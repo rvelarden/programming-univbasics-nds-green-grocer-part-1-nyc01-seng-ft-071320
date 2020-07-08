@@ -12,18 +12,24 @@ counter += 1
  end
  
 def consolidate_cart(cart)
-  filtered_array = []
-  cart.each do |item|
-    target_item = find_item_by_name_in_collection(item[:item], filtered_array)
-    if target_item
-      target_item[:count] += 1
-    else
-      item[:count] = 1
-      filtered_array << item
-    end
-  end
-  return filtered_array
-end
-
-
+  index = 0
+  new_cart = []
   
+  while index < cart.length do
+    item = find_item_by_name_in_collection(cart[index][:item], new_cart)
+    if item
+      new_cart_index = 0
+      while new_cart_index < new_cart.length do
+        if new_cart[new_cart_index][:item] === item[:item]
+          new_cart[new_cart_index][:count] += 1
+        end
+        new_cart_index += 1
+      end
+    else
+      cart[index][:count] = 1
+      new_cart << cart[index]
+    end
+    index += 1
+  end
+  new_cart
+end
