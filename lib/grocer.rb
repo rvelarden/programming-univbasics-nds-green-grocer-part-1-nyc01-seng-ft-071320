@@ -4,12 +4,13 @@ def find_item_by_name_in_collection(name, collection)
 counter = 1 
 while counter < collection.length
 collection[counter][:item] == name
-return collection[counter]
-binding.pry 
 end 
+return nil 
+ 
+
 counter += 1
 end
-nil 
+ 
 # filtered_array = []
 #   cart.each do |item|
 #     target_item = find_item_by_name_in_collection(item[:item], filtered_array)
